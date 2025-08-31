@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Clean Professional Design System - RAKESH Electronics */
+
+@layer base {
+  :root {
+    /* Light Professional Backgrounds */
+    --background: 0 0% 100%;
+    --surface: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-hover: 0 0% 96%;
+    
+    /* Text Colors */
+    --foreground: 210 10% 23%;
+    --text-secondary: 210 10% 40%;
+    --text-muted: 210 8% 55%;
+    
+    /* Professional Green Primary */
+    --primary: 122 39% 33%;
+    --primary-light: 122 39% 45%;
+    --primary-lighter: 122 25% 85%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary Colors */
+    --secondary: 210 8% 96%;
+    --secondary-dark: 210 10% 88%;
+    --secondary-foreground: 210 10% 23%;
+    
+    /* Accent Colors */
+    --accent: 122 25% 85%;
+    --accent-dark: 122 25% 75%;
+    --accent-foreground: 122 39% 33%;
+    
+    /* Interactive States */
+    --hover: 122 25% 90%;
+    --active: 122 39% 28%;
+    
+    /* Utility Colors */
+    --success: 120 40% 40%;
+    --warning: 38 92% 50%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Borders & Inputs */
+    --border: 210 12% 85%;
+    --border-strong: 210 12% 75%;
+    --input: 0 0% 100%;
+    --ring: 122 39% 33%;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transitions */
+    --transition: all 0.2s ease-in-out;
+    
+    --radius: 8px;
+  }
+
+  .dark {
+    /* Dark Professional Backgrounds */
+    --background: 222 47% 11%;
+    --surface: 222 47% 14%;
+    --card: 222 47% 16%;
+    --card-hover: 222 47% 19%;
+    
+    /* Text Colors */
+    --foreground: 210 40% 98%;
+    --text-secondary: 210 40% 85%;
+    --text-muted: 210 40% 65%;
+    
+    /* Professional Green Primary */
+    --primary: 122 39% 45%;
+    --primary-light: 122 39% 55%;
+    --primary-lighter: 122 25% 25%;
+    --primary-foreground: 210 40% 98%;
+    
+    /* Secondary Colors */
+    --secondary: 217 33% 17%;
+    --secondary-dark: 210 10% 88%;
+    --secondary-foreground: 210 40% 98%;
+    
+    /* Accent Colors */
+    --accent: 122 25% 75%;
+    --accent-dark: 122 25% 65%;
+    --accent-foreground: 210 40% 98%;
+    
+    /* Interactive States */
+    --hover: 122 25% 80%;
+    --active: 122 39% 18%;
+    
+    /* Utility Colors */
+    --success: 120 40% 30%;
+    --warning: 38 92% 40%;
+    --destructive: 0 65% 40%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Borders & Inputs */
+    --border: 210 12% 75%;
+    --border-strong: 210 12% 65%;
+    --input: 222 47% 16%;
+    --ring: 122 39% 45%;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transitions */
+    --transition: all 0.2s ease-in-out;
+    
+    --radius: 8px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins antialiased;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-light;
+  }
+}
+
+@layer components {
+  /* Card Components */
+  .card-clean {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .card-clean:hover {
+    box-shadow: var(--shadow-md);
+    border-color: hsl(var(--primary-lighter));
+  }
+  
+  /* Green Accent Border */
+  .border-accent {
+    border-color: hsl(var(--primary-lighter));
+  }
+  
+  /* Soft Animations */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Hover Scale */
+  .hover-scale {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Green Text */
+  .text-primary-green {
+    color: hsl(var(--primary));
+  }
+  
+  /* Section Spacing */
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+}
