@@ -1,73 +1,134 @@
-# Welcome to your Lovable project
+# Rakesh Electronics
 
-## Project info
+![Rakesh Electronics Screenshot](https://via.placeholder.com/1200x600.png?text=Rakesh+Electronics+Website+Screenshot)
+*<p align="center">Add a screenshot of your project here!</p>*
 
-**URL**: https://lovable.dev/projects/c97fb026-4b5a-44ed-9009-e2ec65b41011
+A modern, responsive, and feature-rich website for Rakesh Electronics, an electronics repair and sales business. Built with a professional design system, it offers a seamless user experience for customers looking to explore services, view products, and book repairs.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## ✨ Features
 
-**Use Lovable**
+-   **Responsive Design**: Fully functional and visually appealing on all devices, from mobile phones to desktops.
+-   **Dark & Light Mode**: A theme toggle allows users to switch between light, dark, and system-default themes.
+-   **Interactive UI Components**: Built with the high-quality, accessible components from **shadcn/ui**.
+-   **Book a Repair Service**: A user-friendly dialog form for customers to book repair services, complete with form validation and toast notifications.
+-   **Dynamic Sections**: Clearly defined sections for Home, Services, Products, and Contact information.
+-   **Professional Theming**: A clean, professional design system implemented with Tailwind CSS and custom CSS variables.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c97fb026-4b5a-44ed-9009-e2ec65b41011) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+-   **Framework**: [React](https://reactjs.org/)
+-   **Build Tool**: [Vite](https://vitejs.dev/)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+-   **Routing**: [React Router](https://reactrouter.com/)
+-   **State Management**: [React Query](https://tanstack.com/query/latest) for server state.
+-   **Form Handling**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/) for validation.
+-   **Theme Management**: [next-themes](https://github.com/pacocoursey/next-themes)
+-   **Notifications**: [Sonner](https://sonner.emilkowal.ski/) for toast messages.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+-   [Node.js](https://nodejs.org/) (v18 or later recommended)
+-   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd Rakesh-electronic
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+### Running the Development Server
+
+To start the Vite development server, run the following command. The site will be available at `http://localhost:8080`.
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Building for Production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To create a production-ready build of the application, run:
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This will generate a `dist` folder with the optimized static assets.
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## 🚢 Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This project is configured for easy deployment on [Vercel](https://vercel.com/).
 
-## How can I deploy this project?
+A deployment script (`deploy.sh`) is included to streamline the process.
 
-Simply open [Lovable](https://lovable.dev/projects/c97fb026-4b5a-44ed-9009-e2ec65b41011) and click on Share -> Publish.
+1.  **Log in to the Vercel CLI:**
+    ```bash
+    vercel login
+    ```
 
-## Can I connect a custom domain to my Lovable project?
+2.  **Make the script executable:**
+    ```bash
+    chmod +x deploy.sh
+    ```
 
-Yes, you can!
+3.  **Run the deployment script:**
+    ```bash
+    ./deploy.sh
+    ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The script will handle installing the Vercel CLI, linking the project, building the assets, and deploying to production.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+## 📂 Project Structure
+
+The project follows a standard Vite + React structure, with key directories organized as follows:
+
+```
+Rakesh-electronic/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # Reusable components
+│   │   ├── ui/          # shadcn/ui components
+│   │   ├── BookRepairDialog.tsx
+│   │   ├── Navigation.tsx
+│   │   └── ...
+│   ├── hooks/           # Custom React hooks (e.g., use-toast)
+│   ├── lib/             # Utility functions (e.g., cn)
+│   ├── pages/           # Page components for routing
+│   │   ├── App.tsx
+│   │   ├── Index.tsx
+│   │   └── NotFound.tsx
+│   ├── index.css        # Global styles and Tailwind directives
+│   └── main.tsx         # Main application entry point
+├── deploy.sh            # Deployment script for Vercel
+├── package.json
+├── tailwind.config.js   # Tailwind CSS configuration
+└── vite.config.ts       # Vite configuration
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the `LICENSE
