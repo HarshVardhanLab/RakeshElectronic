@@ -15,7 +15,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: 'Visit Our Store',
-      details: ['123 Electronics Street', 'Tech Plaza, 2nd Floor', 'Mumbai, Maharashtra 400001'],
+      details: ['123 Electronics Street', 'Tech Plaza, 2nd Floor', 'Jalesar, Maharashtra 400001'],
       action: 'Get Directions'
     },
     {
