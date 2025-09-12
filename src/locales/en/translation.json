@@ -13,5 +13,104 @@
   "hero": {
     "title": "Your Trusted Partner for Electronic Repairs",
     "subtitle": "Fast, Reliable, and Affordable Services for All Your Gadgets."
+  },
+  "about": {
+    "hero": {
+      "title": "About Rakesh Electronics",
+      "subtitle": "Dedicated to providing exceptional electronic repair services and premium appliances with over a decade of expertise and commitment to quality."
+    },
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "Founded with a vision to make electronic repairs accessible and reliable, Rakesh Electronics has been serving the community for over 10 years. What started as a small repair shop has grown into a trusted name in electronics services.",
+      "paragraph2": "Our journey began with a simple mission: to provide honest, affordable, and high-quality repair services for all electronic devices. Over the years, we've expanded our expertise to include premium appliances and cutting-edge technology solutions.",
+      "paragraph3": "Today, we're proud to have completed over 1000 successful repairs while maintaining our commitment to customer satisfaction and technological excellence."
+    },
+    "stats": {
+      "repairs": "Repairs Completed",
+      "rating": "Customer Rating",
+      "support": "Support Available",
+      "years": "Years of Experience"
+    },
+    "values": {
+      "title": "Our Mission & Vision",
+      "subtitle": "Guided by our core principles and commitment to excellence in electronic services."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide reliable, affordable, and professional electronic repair services while ensuring customer satisfaction through quality workmanship and honest practices. We strive to extend the life of electronic devices and reduce electronic waste."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become the leading electronics service provider in the region, known for innovation, reliability, and exceptional customer service. We envision a future where technology serves everyone seamlessly."
+    },
+    "coreValues": {
+      "title": "Our Core Values",
+      "subtitle": "The principles that drive everything we do at Rakesh Electronics.",
+      "quality": {
+        "title": "Quality First",
+        "description": "We never compromise on the quality of our repairs and services."
+      },
+      "reliability": {
+        "title": "Reliable Service",
+        "description": "Consistent, dependable service you can trust every time."
+      },
+      "trust": {
+        "title": "Trust & Honesty",
+        "description": "Building lasting relationships through transparent and honest practices."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Staying ahead with the latest technology and repair techniques."
+      }
+    },
+    "team": {
+      "title": "Meet Our Team",
+      "subtitle": "The skilled professionals behind our exceptional service quality.",
+      "founder": {
+        "name": "Rakesh Sharma",
+        "role": "Founder & Lead Technician",
+        "description": "With over 15 years of experience in electronics repair, Rakesh leads our team with expertise and passion for technology."
+      },
+      "technicians": {
+        "name": "Expert Technicians",
+        "role": "Repair Specialists",
+        "description": "Our certified technicians specialize in various electronic devices and stay updated with the latest repair techniques."
+      },
+      "support": {
+        "name": "Customer Support",
+        "role": "Support Team",
+        "description": "Our dedicated support team ensures smooth communication and excellent customer experience throughout the repair process."
+      }
+    }
+  },
+  "products": {
+    "hero": {
+      "title": "Our Products",
+      "subtitle": "Discover our comprehensive range of premium fans, electrical appliances, and accessories for your home and office needs."
+    },
+    "search": {
+      "placeholder": "Search products, categories, or features..."
+    },
+    "sort": {
+      "name": "Sort by Name",
+      "priceLow": "Price: Low to High",
+      "priceHigh": "Price: High to Low",
+      "rating": "Highest Rated"
+    },
+    "categories": {
+      "title": "Categories"
+    },
+    "results": {
+      "allProducts": "All Products",
+      "items": "items"
+    },
+    "buttons": {
+      "addToCart": "Add to Cart",
+      "outOfStock": "Out of Stock"
+    },
+    "noResults": {
+      "title": "No products found",
+      "description": "Try adjusting your search criteria or browse different categories."
+    }
   }
 }

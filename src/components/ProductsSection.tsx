@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "./ui/button";
 import { 
   Fan, 
@@ -204,10 +205,12 @@ const ProductsSection = () => {
 
         {/* View All Products CTA */}
         <div className="text-center mt-12">
-          <Button variant="light" size="lg">
-            View All Products
-            <ArrowRight className="h-5 w-5" />
-          </Button>
+          <Link to="/products">
+            <Button variant="light" size="lg">
+              View All Products
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

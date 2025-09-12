@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "./ui/button";
 import { Menu, X, Zap, Phone, Moon, Sun } from 'lucide-react';
 import { useTheme } from "next-themes";
+import { Link, useLocation } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +19,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { setTheme } = useTheme();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,12 +29,15 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Helper function to determine if we're on the main page
+  const isOnMainPage = location.pathname === '/';
+  
   const navItems = [
-    { name: t('nav.home'), href: '#home' },
-    { name: t('nav.services'), href: '#services' },
-    { name: t('nav.products'), href: '#products' },
-    { name: t('nav.about'), href: '#about' },
-    { name: t('nav.contact'), href: '#contact' }
+    { name: t('nav.home'), href: isOnMainPage ? '#home' : '/#home', isRoute: !isOnMainPage },
+    { name: t('nav.services'), href: isOnMainPage ? '#services' : '/#services', isRoute: !isOnMainPage },
+    { name: t('nav.products'), href: isOnMainPage ? '#products' : '/#products', isRoute: !isOnMainPage },
+    { name: t('nav.about'), href: '/about', isRoute: true },
+    { name: t('nav.contact'), href: isOnMainPage ? '#contact' : '/#contact', isRoute: !isOnMainPage }
   ];
 
   return (
@@ -58,13 +63,23 @@ const Navigation = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-6">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-text-secondary hover:text-primary transition-colors duration-200 px-3 py-2 rounded-md text-sm font-medium font-poppins"
-                >
-                  {item.name}
-                </a>
+                item.isRoute ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-text-secondary hover:text-primary transition-colors duration-200 px-3 py-2 rounded-md text-sm font-medium font-poppins"
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-text-secondary hover:text-primary transition-colors duration-200 px-3 py-2 rounded-md text-sm font-medium font-poppins"
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
             </div>
           </div>
@@ -98,14 +113,25 @@ const Navigation = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 card-clean mt-2 rounded-lg">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-text-secondary hover:text-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.isRoute ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-text-secondary hover:text-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-text-secondary hover:text-primary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
               <div className="pt-2">
                 <Button variant="green" size="sm" className="w-full">

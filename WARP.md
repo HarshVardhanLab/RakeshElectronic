@@ -29,6 +29,7 @@ npm run preview
 - The development server runs on port 8080 (configured in vite.config.ts)
 - Hot module replacement is enabled for fast development
 - ESLint is configured for code quality
+- Node.js v18 or later is recommended
 
 ## Project Architecture
 
@@ -42,6 +43,7 @@ npm run preview
 - **React Hook Form + Zod** for form handling and validation
 - **i18next** for internationalization (English/Hindi support)
 - **next-themes** for dark/light theme switching
+- **Sonner** for toast notifications
 
 ### Directory Structure
 ```
@@ -59,6 +61,7 @@ src/
 │   ├── App.tsx         # Root app component with providers
 │   ├── Index.tsx       # Main landing page
 │   ├── BookRepair.tsx  # Repair booking page
+│   ├── About.tsx       # About page
 │   └── NotFound.tsx    # 404 page
 ├── locales/            # i18n translation files
 │   ├── en/translation.json
@@ -97,7 +100,7 @@ src/
 
 #### Routing Setup
 - BrowserRouter with Routes/Route from React Router DOM
-- Main routes: / (Index), /book-repair (BookRepair), /* (NotFound)
+- Main routes: / (Index), /about (About), /book-repair (BookRepair), /* (NotFound)
 - Navigation component handles smooth scrolling to page sections
 
 ### Development Notes
@@ -138,6 +141,20 @@ src/
 - Custom font families (Poppins, Roboto)
 - shadcn/ui integration with proper theming support
 - Animation utilities for interactive elements
+
+### Deployment
+- The project is configured for deployment on Vercel
+- Use the following commands for deployment:
+  ```bash
+  # Install Vercel CLI if not already installed
+  npm install -g vercel
+  
+  # Login to Vercel
+  vercel login
+  
+  # Deploy to production
+  vercel --prod
+  ```
 
 ### Business Context
 This is a website for Rakesh Electronics, an electronics repair and sales business. The site features:
