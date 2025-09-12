@@ -10,8 +10,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { setTheme } = useTheme();
@@ -25,11 +28,11 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Products', href: '#products' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' }
+    { name: t('nav.home'), href: '#home' },
+    { name: t('nav.services'), href: '#services' },
+    { name: t('nav.products'), href: '#products' },
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.contact'), href: '#contact' }
   ];
 
   return (
@@ -37,7 +40,7 @@ const Navigation = () => {
       scrolled ? 'bg-background/95 backdrop-blur-sm shadow-md border-b border-border' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <div className="p-2 rounded-lg bg-primary shadow-sm">
@@ -66,17 +69,19 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* CTA Button & Theme Toggle */}
+          {/* CTA Button & Toggles */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="green" size="sm">
-              <Phone className="h-4 w-4" />
-              Book Repair
+              <Phone className="h-4 w-4 mr-2" />
+              {t('buttons.bookRepair')}
             </Button>
+            <LanguageSwitcher />
             <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
           <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
             <ThemeToggle />
             <Button
               variant="ghost"

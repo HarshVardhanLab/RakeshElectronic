@@ -17,13 +17,13 @@ const ServicesSection = () => {
   const repairServices = [
     {
       icon: Smartphone,
-      title: 'Mobile Repairs',
+      title: 'Mixer Repairs',
       description: 'Screen replacement, battery issues, charging problems',
-      features: ['Screen Repair', 'Battery Replacement', 'Charging Port Fix', 'Software Issues']
+      features: ['Motor Repairing','Stucking Issues', 'Hardware Issues']
     },
     {
       icon: Laptop,
-      title: 'Laptop Services', 
+      title: 'Dish Antena & Box', 
       description: 'Hardware upgrades, cooling solutions, performance optimization',
       features: ['Hardware Upgrade', 'Cooling System', 'Performance Boost', 'Data Recovery']
     },
@@ -67,7 +67,7 @@ const ServicesSection = () => {
     {
       icon: CheckCircle,
       title: 'Expert Technicians',
-      description: 'Certified professionals with years of experience'
+      description: 'Professionals with years of experience'
     }
   ];
 

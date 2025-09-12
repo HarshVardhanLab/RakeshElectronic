@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "buttons": {
+    "bookRepair": "Book Repair",
+    "submitBooking": "Submit Booking"
+  },
+  "hero": {
+    "title": "Your Trusted Partner for Electronic Repairs",
+    "subtitle": "Fast, Reliable, and Affordable Services for All Your Gadgets."
+  }
+}

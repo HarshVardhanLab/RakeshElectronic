@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./Index";
 import NotFound from "./NotFound";
 import { ThemeProvider } from "../components/ThemeProvider";
+import BookRepair from "../pages/BookRepair"
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
+            <Route path="/book-repair" element={<BookRepair />} />
           </Routes>
         </BrowserRouter>
         <Toaster />
