@@ -105,11 +105,16 @@ const BookRepair: React.FC = () => {
       });
       
       form.reset();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Booking error:", error);
+      const errorMessage = error?.message || error?.toString() || "Unknown error";
       toast.error("Failed to submit repair request", {
-        description: "Please try again or contact us directly.",
+        description: errorMessage.includes("policy") 
+          ? "Database permission error. Please contact admin." 
+          : "Please try again or contact us directly.",
       });
+      // Log full error for debugging
+      console.error("Full error details:", JSON.stringify(error, null, 2));
     }
   };
 
