@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -6,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, Phone, Mail, User, Wrench, MessageSquare, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import { useCreateBooking } from "../hooks/useBookings";
 
 import Navigation from "../components/Navigation";
 import { Button } from "../components/ui/button";
@@ -70,6 +70,7 @@ const deviceTypes = [
 
 const BookRepair: React.FC = () => {
   const { t } = useTranslation();
+  const createBooking = useCreateBooking();
   
   const form = useForm<BookRepairForm>({
     resolver: zodResolver(bookRepairSchema),
@@ -88,18 +89,24 @@ const BookRepair: React.FC = () => {
 
   const onSubmit = async (values: BookRepairForm) => {
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log("Repair request submitted:", values);
+      // Save to Supabase database
+      const booking = await createBooking.mutateAsync({
+        customer_name: values.name,
+        phone: values.phone,
+        email: values.email,
+        device_type: values.deviceType,
+        brand: values.deviceBrand,
+        issue_description: `${values.issue}\n\nModel: ${values.deviceModel}\nAddress: ${values.address}${values.preferredDate ? `\nPreferred Date: ${values.preferredDate}` : ''}`,
+      });
       
       toast.success("Repair request submitted successfully!", {
-        description: "We'll contact you within 24 hours to confirm your appointment.",
+        description: `Booking ID: ${booking.id.slice(0, 8).toUpperCase()}. We'll contact you within 24 hours.`,
         duration: 5000,
       });
       
       form.reset();
     } catch (error) {
+      console.error("Booking error:", error);
       toast.error("Failed to submit repair request", {
         description: "Please try again or contact us directly.",
       });

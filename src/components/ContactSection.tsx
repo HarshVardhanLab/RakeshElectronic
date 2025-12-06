@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Button } from "./ui/button";
 import { 
   MapPin, 
@@ -7,10 +7,50 @@ import {
   Clock, 
   MessageCircle,
   Send,
-  Settings
+  Settings,
+  Loader2
 } from 'lucide-react';
+import { toast } from 'sonner';
+import { useSubmitContact } from '../hooks/useContacts';
 
 const ContactSection = () => {
+  const submitContact = useSubmitContact();
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.message) {
+      toast.error('Please fill in required fields');
+      return;
+    }
+
+    try {
+      await submitContact.mutateAsync({
+        name: formData.name,
+        email: `${formData.phone}@contact.form`, // Using phone as identifier
+        phone: formData.phone,
+        subject: formData.service || 'General Inquiry',
+        message: formData.message,
+      });
+
+      toast.success('Message sent successfully!', {
+        description: "We'll get back to you soon.",
+      });
+
+      setFormData({ name: '', phone: '', service: '', message: '' });
+    } catch (error) {
+      toast.error('Failed to send message', {
+        description: 'Please try again or call us directly.',
+      });
+    }
+  };
+
   const contactInfo = [
     {
       icon: MapPin,
@@ -116,20 +156,32 @@ const ContactSection = () => {
 
           {/* Map & Quick Contact */}
           <div className="space-y-8">
-            {/* Map Placeholder */}
+            {/* Google Maps Embed */}
             <div className="card-clean rounded-xl overflow-hidden h-80 border-accent">
-              <div className="w-full h-full bg-secondary flex items-center justify-center relative">
-                <div className="text-center">
-                  <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
-                  <h4 className="font-poppins font-semibold text-lg mb-2 text-foreground">Interactive Map</h4>
-                  <p className="text-text-muted">Click to view in Google Maps</p>
+              <a 
+                href="https://maps.app.goo.gl/qgPKTmYhbEjZZ7fT6" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block w-full h-full relative group"
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.5!2d78.3!3d27.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRakesh+Electronics!5e0!3m2!1sen!2sin!4v1701878400000"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Rakesh Electronics Location"
+                  className="pointer-events-none"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-primary-foreground px-4 py-2 rounded-lg flex items-center gap-2">
+                    <MapPin className="h-4 w-4" />
+                    Open in Google Maps
+                  </div>
                 </div>
-                
-                {/* Static Marker */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-4 h-4 bg-primary rounded-full"></div>
-                </div>
-              </div>
+              </a>
             </div>
 
             {/* Quick Contact Form */}
@@ -138,37 +190,58 @@ const ContactSection = () => {
                 Quick <span className="text-primary">Message</span>
               </h3>
               
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
                     type="text"
-                    placeholder="Your Name"
+                    placeholder="Your Name *"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="bg-input border border-border rounded-lg px-4 py-3 text-foreground placeholder-text-muted focus:border-primary focus:outline-none focus:shadow-md transition-all"
+                    required
                   />
                   <input
                     type="tel"
                     placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="bg-input border border-border rounded-lg px-4 py-3 text-foreground placeholder-text-muted focus:border-primary focus:outline-none focus:shadow-md transition-all"
                   />
                 </div>
                 
-                <select className="w-full bg-input border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none focus:shadow-md transition-all">
+                <select 
+                  className="w-full bg-input border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none focus:shadow-md transition-all"
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                >
                   <option value="">Select Service</option>
-                  <option value="repair">Device Repair</option>
-                  <option value="purchase">Product Purchase</option>
-                  <option value="installation">Installation Service</option>
-                  <option value="maintenance">Maintenance</option>
+                  <option value="Device Repair">Device Repair</option>
+                  <option value="Product Purchase">Product Purchase</option>
+                  <option value="Installation Service">Installation Service</option>
+                  <option value="Maintenance">Maintenance</option>
                 </select>
                 
                 <textarea
-                  placeholder="Your Message"
+                  placeholder="Your Message *"
                   rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full bg-input border border-border rounded-lg px-4 py-3 text-foreground placeholder-text-muted focus:border-primary focus:outline-none focus:shadow-md transition-all resize-none"
+                  required
                 ></textarea>
                 
-                <Button variant="green" className="w-full">
-                  Send Message
-                  <Send className="h-4 w-4" />
+                <Button variant="green" className="w-full" type="submit" disabled={submitContact.isPending}>
+                  {submitContact.isPending ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="h-4 w-4" />
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
