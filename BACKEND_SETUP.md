@@ -220,7 +220,7 @@ Run `supabase/schema-v2.sql` after the initial setup to enable:
 
 ### Admin Features
 1. **Analytics Dashboard** - Stats, charts, popular devices, revenue
-2. **Device Entry Register** - Walk-in customer notebook (NEW!)
+2. **Device Entry Register** - Walk-in customer notebook
    - Register devices with serial number
    - Customer info (name, mobile, village)
    - Device details (type, brand, winding type, HP)
@@ -228,10 +228,15 @@ Run `supabase/schema-v2.sql` after the initial setup to enable:
    - Print receipt for customer
    - Full CRUD operations
 3. **Bookings Manager** - Full CRUD, status management, print job cards
-4. **Products Manager** - Add/edit/delete products, stock management
-5. **Customers Manager** - Customer list, repair history, VIP tracking
-6. **Contacts Manager** - Message inbox with read/unread status
-7. **Settings** - Business info, working hours, service rates
+4. **Invoice Manager** - Create invoices, track payments, print PDF
+5. **Warranty Manager** - Track warranties, expiry alerts, void warranties
+6. **Products Manager** - Add/edit/delete products, stock management
+7. **Customers Manager** - Customer list, repair history, VIP tracking
+8. **Contacts Manager** - Message inbox with read/unread status
+9. **Settings** - Business info, working hours, service rates
+
+### Customer Portal
+- **Track Repair** (`/track-repair`) - Customers can check repair status by serial number or phone
 
 ---
 

@@ -11,6 +11,7 @@ import { ThemeProvider } from "../components/ThemeProvider";
 import BookRepair from "../pages/BookRepair";
 import AdminDashboard from "./admin/Dashboard";
 import AdminLogin from "./admin/Login";
+import TrackRepair from "./customer/TrackRepair";
 import { AuthProvider } from "../contexts/AuthContext";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -27,6 +28,7 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/products" element={<Products />} />
               <Route path="/book-repair" element={<BookRepair />} />
+              <Route path="/track-repair" element={<TrackRepair />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route
                 path="/admin"

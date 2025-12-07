@@ -11,12 +11,14 @@ import {
   Users,
   Settings,
   ClipboardList,
+  FileText,
+  Shield,
 } from 'lucide-react';
 import { Button } from '../../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
+import { Card, CardContent } from '../../components/ui/card';
 import { useBookings } from '../../hooks/useBookings';
 import { useProducts } from '../../hooks/useProducts';
-import { useContacts, useMarkContactRead } from '../../hooks/useContacts';
+import { useContacts } from '../../hooks/useContacts';
 import { useAuth } from '../../contexts/AuthContext';
 import { toast } from 'sonner';
 
@@ -28,15 +30,21 @@ import CustomersManager from './CustomersManager';
 import ContactsManager from './ContactsManager';
 import SettingsPage from './Settings';
 import DeviceEntryManager from './DeviceEntryManager';
+import InvoiceManager from './InvoiceManager';
+import WarrantyManager from './WarrantyManager';
 import { useDeviceEntries } from '../../hooks/useDeviceEntries';
+import { useInvoices } from '../../hooks/useInvoices';
+import { useWarranties } from '../../hooks/useWarranties';
 
-type TabType = 'analytics' | 'device-entry' | 'bookings' | 'products' | 'customers' | 'contacts' | 'settings';
+type TabType = 'analytics' | 'device-entry' | 'bookings' | 'invoices' | 'warranties' | 'products' | 'customers' | 'contacts' | 'settings';
 
 export default function AdminDashboard() {
   const { data: bookings, refetch: refetchBookings } = useBookings();
   const { data: products } = useProducts();
   const { data: contacts, refetch: refetchContacts } = useContacts();
   const { data: deviceEntries, refetch: refetchDevices } = useDeviceEntries();
+  const { data: invoices, refetch: refetchInvoices } = useInvoices();
+  const { data: warranties, refetch: refetchWarranties } = useWarranties();
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -52,17 +60,23 @@ export default function AdminDashboard() {
     refetchBookings();
     refetchContacts();
     refetchDevices();
+    refetchInvoices();
+    refetchWarranties();
     toast.success('Data refreshed');
   };
 
   const pendingBookings = bookings?.filter((b) => b.status === 'pending').length || 0;
   const unreadContacts = contacts?.filter((c) => !c.is_read).length || 0;
   const pendingDevices = deviceEntries?.filter((d) => d.status === 'received' || d.status === 'in-repair' || d.status === 'ready').length || 0;
+  const unpaidInvoices = invoices?.filter((i) => i.payment_status !== 'paid').length || 0;
+  const activeWarranties = warranties?.filter((w) => w.status === 'active').length || 0;
 
   const tabs: { id: TabType; label: string; icon: typeof Wrench; badge?: number }[] = [
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'device-entry', label: 'Device Entry', icon: ClipboardList, badge: pendingDevices },
     { id: 'bookings', label: 'Bookings', icon: Wrench, badge: pendingBookings },
+    { id: 'invoices', label: 'Invoices', icon: FileText, badge: unpaidInvoices },
+    { id: 'warranties', label: 'Warranties', icon: Shield },
     { id: 'products', label: 'Products', icon: Package },
     { id: 'customers', label: 'Customers', icon: Users },
     { id: 'contacts', label: 'Messages', icon: MessageSquare, badge: unreadContacts },
@@ -213,6 +227,8 @@ export default function AdminDashboard() {
           {activeTab === 'analytics' && <Analytics />}
           {activeTab === 'device-entry' && <DeviceEntryManager />}
           {activeTab === 'bookings' && <BookingsManager />}
+          {activeTab === 'invoices' && <InvoiceManager />}
+          {activeTab === 'warranties' && <WarrantyManager />}
           {activeTab === 'products' && <ProductsManager />}
           {activeTab === 'customers' && <CustomersManager />}
           {activeTab === 'contacts' && <ContactsManager />}

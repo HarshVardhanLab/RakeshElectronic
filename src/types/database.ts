@@ -5,6 +5,9 @@ export type BookingPriority = 'low' | 'medium' | 'high';
 export type ProductCategory = 'fans' | 'appliances' | 'accessories' | 'spare-parts';
 export type DeviceEntryStatus = 'received' | 'in-repair' | 'ready' | 'delivered' | 'cancelled';
 export type WindingType = 'copper' | 'aluminium' | 'other';
+export type PaymentStatus = 'unpaid' | 'partial' | 'paid';
+export type WarrantyStatus = 'active' | 'expired' | 'claimed' | 'void';
+export type ClaimStatus = 'pending' | 'approved' | 'rejected' | 'completed';
 
 export interface Booking {
   id: string;
@@ -213,4 +216,112 @@ export interface DeviceEntryInsert {
   expected_delivery?: string;
   technician_name?: string;
   notes?: string;
+}
+
+// Invoice types
+export interface InvoiceItem {
+  description: string;
+  qty: number;
+  rate: number;
+  amount: number;
+}
+
+export interface Invoice {
+  id: string;
+  invoice_number: string;
+  booking_id?: string;
+  device_entry_id?: string;
+  customer_name: string;
+  customer_phone: string;
+  customer_address?: string;
+  items: InvoiceItem[];
+  subtotal: number;
+  discount: number;
+  tax_percent: number;
+  tax_amount: number;
+  total: number;
+  amount_paid: number;
+  payment_status: PaymentStatus;
+  payment_method?: string;
+  payment_date?: string;
+  invoice_date: string;
+  due_date?: string;
+  notes?: string;
+  created_at: string;
+}
+
+export interface InvoiceInsert {
+  invoice_number?: string;
+  booking_id?: string;
+  device_entry_id?: string;
+  customer_name: string;
+  customer_phone: string;
+  customer_address?: string;
+  items: InvoiceItem[];
+  subtotal: number;
+  discount?: number;
+  tax_percent?: number;
+  tax_amount?: number;
+  total: number;
+  amount_paid?: number;
+  payment_method?: string;
+  notes?: string;
+}
+
+// Warranty types
+export interface Warranty {
+  id: string;
+  booking_id?: string;
+  device_entry_id?: string;
+  invoice_id?: string;
+  customer_name: string;
+  customer_phone: string;
+  device_type: string;
+  device_brand?: string;
+  serial_number?: string;
+  warranty_days: number;
+  start_date: string;
+  end_date: string;
+  service_description?: string;
+  technician_name?: string;
+  status: WarrantyStatus;
+  claim_count: number;
+  notes?: string;
+  created_at: string;
+}
+
+export interface WarrantyInsert {
+  booking_id?: string;
+  device_entry_id?: string;
+  invoice_id?: string;
+  customer_name: string;
+  customer_phone: string;
+  device_type: string;
+  device_brand?: string;
+  serial_number?: string;
+  warranty_days?: number;
+  service_description?: string;
+  technician_name?: string;
+  notes?: string;
+}
+
+export interface WarrantyClaim {
+  id: string;
+  warranty_id: string;
+  claim_date: string;
+  issue_description: string;
+  resolution?: string;
+  status: ClaimStatus;
+  created_at: string;
+}
+
+// Customer Account (for portal)
+export interface CustomerAccount {
+  id: string;
+  phone: string;
+  name?: string;
+  email?: string;
+  address?: string;
+  created_at: string;
+  updated_at: string;
 }

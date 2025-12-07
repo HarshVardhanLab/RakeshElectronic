@@ -92,9 +92,14 @@ const HeroSection = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/book-repair">
-              <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition">
+              <Button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition">
                 Book Repair Service
-              </button>
+              </Button>
+            </Link>
+            <Link to="/track-repair">
+              <Button variant="outline" size="lg">
+                Track Your Repair
+              </Button>
             </Link>
             <Button variant="outline" size="lg">
               View Products
